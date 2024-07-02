@@ -5,11 +5,11 @@ const postSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: [true, "please add post title"],
+      required: [true, "Porfavor agregue el título"],
     },
     description: {
       type: String,
-      required: [true, "please add post description"],
+      required: [true, "Porfavor agregue la descripción"],
     },
     postedBy: {
       type: mongoose.Schema.ObjectId,

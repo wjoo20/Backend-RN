@@ -8,7 +8,7 @@ const createPostController = async (req, res) => {
     if (!title || !description) {
       return res.status(500).send({
         success: false,
-        message: "Please Provide All Fields",
+        message: "Porfavor llene todos los campos",
       });
     }
     const post = await postModel({
@@ -18,7 +18,7 @@ const createPostController = async (req, res) => {
     }).save();
     res.status(201).send({
       success: true,
-      message: "Post Created Successfully",
+      message: "Post creado satisfactoriamente",
       post,
     });
     console.log(req);
@@ -26,7 +26,7 @@ const createPostController = async (req, res) => {
     console.log(error);
     res.status(500).send({
       success: true,
-      message: "Error in Create Post APi",
+      message: "Error crear post",
       error,
     });
   }
@@ -41,14 +41,14 @@ const getAllPostsContoller = async (req, res) => {
       .sort({ createdAt: -1 });
     res.status(200).send({
       success: true,
-      message: "All Posts Data",
+      message: "Todos los posts",
       posts,
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Error In GETALLPOSTS API",
+      message: "Error en obtener posts",
       error,
     });
   }
@@ -60,14 +60,14 @@ const getUserPostsController = async (req, res) => {
     const userPosts = await postModel.find({ postedBy: req.auth._id });
     res.status(200).send({
       success: true,
-      message: "user posts",
+      message: "Posts de usuario",
       userPosts,
     });
   } catch (error) {
     console.log(error);
     return res.status(500).send({
       success: false,
-      message: "Error in User POST API",
+      message: "Error post de usuario",
       error,
     });
   }
@@ -80,13 +80,13 @@ const deletePostController = async (req, res) => {
     await postModel.findByIdAndDelete({ _id: id });
     res.status(200).send({
       success: true,
-      message: "Your Post been deleted!",
+      message: "El post fue eliminado!",
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "error in delete post api",
+      message: "Error eliminando post",
       error,
     });
   }
@@ -102,7 +102,7 @@ const updatePostController = async (req, res) => {
     if (!title || !description) {
       return res.status(500).send({
         success: false,
-        message: "Please Provide post title or description",
+        message: "Porfavor coloque el título o la descripción",
       });
     }
     const updatedPost = await postModel.findByIdAndUpdate(
@@ -115,14 +115,14 @@ const updatePostController = async (req, res) => {
     );
     res.status(200).send({
       success: true,
-      message: "Post Updated Successfully",
+      message: "Post actualizado satisfactoriamente",
       updatedPost,
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Error in update post api",
+      message: "Error actualizando post",
       error,
     });
   }

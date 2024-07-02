@@ -4,18 +4,18 @@ const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, "please add name"],
+      required: [true, "Porfavor agregue el nombre"],
       trim: true,
     },
     email: {
       type: String,
-      required: [true, "please add email"],
+      required: [true, "Porfavor agregue el email"],
       unique: true,
       trim: true,
     },
     password: {
       type: String,
-      required: [true, "please add password"],
+      required: [true, "Porfavor agregue la contraseña"],
       min: 6,
       max: 64,
     },

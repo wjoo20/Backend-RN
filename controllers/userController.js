@@ -17,19 +17,19 @@ const registerController = async (req, res) => {
     if (!name) {
       return res.status(400).send({
         success: false,
-        message: "name is required",
+        message: "Nombre es obligatorio",
       });
     }
     if (!email) {
       return res.status(400).send({
         success: false,
-        message: "email is required",
+        message: "Email es obligatorio",
       });
     }
     if (!password || password.length < 6) {
       return res.status(400).send({
         success: false,
-        message: "password is required and 6 character long",
+        message: "La contraseña debe ser mínimo de 6 caracteres",
       });
     }
     //exisiting user
@@ -37,7 +37,7 @@ const registerController = async (req, res) => {
     if (exisitingUser) {
       return res.status(500).send({
         success: false,
-        message: "User Already Register With This EMail",
+        message: "Usuario ya registrado con este email",
       });
     }
     //hashed pasword
@@ -52,13 +52,13 @@ const registerController = async (req, res) => {
 
     return res.status(201).send({
       success: true,
-      message: "Registration Successfull please login",
+      message: "Registro satisfactorio, inicie sesión",
     });
   } catch (error) {
     console.log(error);
     return res.status(500).send({
       success: false,
-      message: "Error in Register API",
+      message: "Error en registro",
       error,
     });
   }
@@ -72,7 +72,7 @@ const loginController = async (req, res) => {
     if (!email || !password) {
       return res.status(500).send({
         success: false,
-        message: "Please Provide Email Or Password",
+        message: "Porfavor ingrese email o contraseña",
       });
     }
     // find user
@@ -80,7 +80,7 @@ const loginController = async (req, res) => {
     if (!user) {
       return res.status(500).send({
         success: false,
-        message: "User Not Found",
+        message: "Usuario no encontrado",
       });
     }
     //match password
@@ -88,7 +88,7 @@ const loginController = async (req, res) => {
     if (!match) {
       return res.status(500).send({
         success: false,
-        message: "Invalid usrname or password",
+        message: "Usuario o contraseña incorrecto",
       });
     }
     //TOKEN JWT
@@ -100,7 +100,7 @@ const loginController = async (req, res) => {
     user.password = undefined;
     res.status(200).send({
       success: true,
-      message: "login successfully",
+      message: "Inicio de sesión satisfactorio",
       token,
       user,
     });
@@ -108,7 +108,7 @@ const loginController = async (req, res) => {
     console.log(error);
     return res.status(500).send({
       success: false,
-      message: "error in login api",
+      message: "Error en inicio de sesión",
       error,
     });
   }
@@ -124,7 +124,7 @@ const updateUserController = async (req, res) => {
     if (password && password.length < 6) {
       return res.status(400).send({
         success: false,
-        message: "Password is required and should be 6 character long",
+        message: "La contraseña es obligatoria y debe ser mínimo de 6 caracteresg",
       });
     }
     const hashedPassword = password ? await hashPassword(password) : undefined;
@@ -140,14 +140,14 @@ const updateUserController = async (req, res) => {
     updatedUser.password = undefined;
     res.status(200).send({
       success: true,
-      message: "Profile Updated Please Login",
+      message: "Perfil actualizado, por favor inicie sesión",
       updatedUser,
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Error In User Update Api",
+      message: "Error en actualizar",
       error,
     });
   }
